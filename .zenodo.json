@@ -1,0 +1,18 @@
+{
+  "creators": [
+    {
+      "affiliation": "ANULUM",
+      "name": "Šotek, Miroslav",
+      "orcid": "0009-0009-3560-0851"
+    }
+  ],
+  "description": "Architectural material and repository foundation under construction for planned source-bound comparison, reduction and replay of spiking-model executions. No executable driver or qualified numerical result is released.",
+  "keywords": [
+    "spiking neural networks",
+    "numerical comparison",
+    "reproducibility"
+  ],
+  "license": "AGPL-3.0-or-later",
+  "title": "SNN Divergence Harness",
+  "upload_type": "software"
+}

@@ -1,0 +1,59 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Commercial license available
+# © Concepts 1996–2026 Miroslav Šotek. All rights reserved.
+# © Code 2020–2026 Miroslav Šotek. All rights reserved.
+# ORCID: 0009-0009-3560-0851
+# Contact: www.anulum.li | protoscience@anulum.li
+# SNN-DIVERGENCE-HARNESS — local repository metadata validation
+
+minimum_pre_commit_version: "4.6.2"
+fail_fast: false
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: Python lint and native docstrings
+        entry: .venv/bin/ruff check
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: Python formatting
+        entry: .venv/bin/ruff format --check
+        language: system
+        types: [python]
+      - id: mypy
+        name: Strict types for maintained tooling and tests
+        entry: .venv/bin/mypy --strict tools tests
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: repository-metadata
+        name: Source-selected repository metadata
+        entry: .venv/bin/python tools/check_repository_metadata.py --root . --json
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: reuse
+        name: Native source licence and attribution
+        entry: .venv/bin/reuse lint
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: docs
+        name: Strict documentation and native API rendering
+        entry: .venv/bin/mkdocs build --strict --clean --config-file mkdocs.yml
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: bandit
+        name: Native maintained-tool source inspection
+        entry: .venv/bin/bandit -r tools -q
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: gitleaks
+        name: Native staged-source secret inspection
+        entry: gitleaks git --pre-commit --staged --no-banner --redact --ignore-gitleaks-allow --gitleaks-ignore-path /dev/null --timeout 30
+        language: system
+        pass_filenames: false
+        always_run: true
