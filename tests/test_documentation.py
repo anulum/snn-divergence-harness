@@ -20,6 +20,7 @@ from pathlib import Path
 import pytest
 
 from check_documentation import main, validate_documentation
+from repository_policy import PUBLIC_PATHS
 
 SOURCE = Path(__file__).resolve().parents[1]
 
@@ -38,15 +39,10 @@ def candidate(tmp_path: Path) -> Path:
         SOURCE / "LICENSE",
     ]:
         shutil.copyfile(path, root / path.name)
-    for directory in ["docs", "tools"]:
-        for path in (SOURCE / directory).rglob("*"):
-            relative = path.relative_to(SOURCE)
-            if "internal" in relative.parts or "__pycache__" in relative.parts:
-                continue
-            if path.is_file():
-                target = root / relative
-                target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(path, target)
+    for relative in sorted(name for name in PUBLIC_PATHS if name.startswith(("docs/", "tools/"))):
+        target = root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(SOURCE / relative, target)
     for path in (SOURCE / ".tool-cache/site").rglob("*"):
         if path.is_file():
             target = root / path.relative_to(SOURCE)
@@ -471,3 +467,37 @@ def test_missing_actual_documented_api_cannot_inherit_existing_html(candidate: P
     """Refuse a source API that disappeared while its earlier native page still exists."""
     (candidate / "tools/check_dependency_alignment.py").unlink()
     assert "api_reference_unavailable" in _codes(candidate)[1]
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "CONTRIBUTING",
+        "CODE_OF_CONDUCT",
+        "GOVERNANCE",
+        "CONTRIBUTORS",
+        "SUPPORT",
+        "SECURITY",
+        "VALIDATION",
+    ],
+)
+def test_missing_rendered_root_policy_cannot_pass_source_inspection(
+    candidate: Path, name: str
+) -> None:
+    """Require every actual policy page rather than accepting root Markdown alone."""
+    (candidate / ".tool-cache/site" / name / "index.html").unlink()
+    code, reasons = _codes(candidate)
+    assert code == 3
+    assert "rendered_page_unavailable" in reasons
+
+
+def test_changed_root_policy_requires_a_fresh_native_build(candidate: Path) -> None:
+    """Reject stale policy HTML and recover through the ordinary build chain."""
+    path = candidate / "GOVERNANCE.md"
+    path.write_text(path.read_text() + "\n## Review ownership\n\nRetain source responsibility.\n")
+    assert {"rendered_headings_differ", "rendered_text_differs"} <= _codes(candidate)[1]
+    built = subprocess.run(
+        ["make", "docs"], cwd=candidate, capture_output=True, text=True, timeout=30, check=False
+    )
+    assert built.returncode == 0, built.stdout + built.stderr
+    assert _codes(candidate) == (0, set())

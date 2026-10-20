@@ -23,6 +23,7 @@ from documentation_policy import (
     API_MODULES,
     FORBIDDEN_TEXT,
     PRIVATE_PARTS,
+    RENDERED_ROOT_DOCUMENTS,
     ROOT_DOCUMENTS,
     UNSUPPORTED_CLAIM,
     DocumentationIssue,
@@ -255,11 +256,13 @@ def validate_documentation(root: Path) -> DocumentationReport:
             path = root / "tools" / (module + ".py")
             if module not in API_MODULES or not path.is_file() or _linked(root, path):
                 reasons.append(DocumentationIssue(name, "api_reference_unavailable"))
-        if not name.startswith("docs/"):
+        if not name.startswith("docs/") and name not in RENDERED_ROOT_DOCUMENTS:
             if directives:
                 reasons.append(DocumentationIssue(name, "api_reference_outside_renderer"))
             continue
-        relative = Path(name).relative_to("docs").with_suffix("")
+        relative = (
+            Path(name).relative_to("docs") if name.startswith("docs/") else Path(name)
+        ).with_suffix("")
         output = (
             relative.parent / "index.html" if relative.name == "index" else relative / "index.html"
         )

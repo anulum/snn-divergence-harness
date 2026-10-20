@@ -10,6 +10,8 @@ site_name: SNN Divergence Harness
 site_description: Architecture and repository foundation for planned source-bound comparison and replay
 strict: true
 site_dir: .tool-cache/site
+hooks:
+  - tools/documentation_hooks.py
 exclude_docs: |
   /internal/
 theme:
@@ -22,6 +24,13 @@ nav:
   - Validation tooling: validation-tooling.md
   - Data and authority boundaries: THREAT_MODEL.md
   - Repository boundary: adr/0001-repository-boundary.md
+  - Contributing: CONTRIBUTING.md
+  - Code of conduct: CODE_OF_CONDUCT.md
+  - Governance: GOVERNANCE.md
+  - Contributors: CONTRIBUTORS.md
+  - Support: SUPPORT.md
+  - Security reporting: SECURITY.md
+  - Validation: VALIDATION.md
 plugins:
   - search
   - mkdocstrings:

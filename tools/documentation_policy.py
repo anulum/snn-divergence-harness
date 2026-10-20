@@ -18,7 +18,8 @@ from pathlib import Path
 
 MAX_BYTES = 2_097_152
 SELECTED_INPUTS = {
-    "mkdocs.yml": "47b0af9ac88273bea828eb9b68ea478dc15750bd801e0fd96bc5460b9698dc24",
+    "mkdocs.yml": "9aaee68a9ec7792b55ccd188ca6a6c90233d4bbd40ab4c8784107694e63da971",
+    "tools/documentation_hooks.py": "1c6f84b35abfac0ac88efdaa80dbe56f43295951642dafcb52d24df4f8dec7cf",
     "CITATION.cff": "42412e996fa61e58cf6e0d6c016033812eeff7cd322c1d830a802560bc8e7730",
     ".zenodo.json": "f697442c9e0556ba2f5b9b1d497d3c69af7385f08862ddf9173df46632667374",
 }
@@ -38,6 +39,17 @@ ROOT_DOCUMENTS = frozenset(
         "VALIDATION.md",
     }
 )
+RENDERED_ROOT_DOCUMENTS = frozenset(
+    {
+        "CONTRIBUTING.md",
+        "CODE_OF_CONDUCT.md",
+        "GOVERNANCE.md",
+        "CONTRIBUTORS.md",
+        "SUPPORT.md",
+        "SECURITY.md",
+        "VALIDATION.md",
+    }
+)
 API_MODULES = frozenset(
     {
         "check_repository_metadata",
@@ -50,6 +62,7 @@ API_MODULES = frozenset(
         "check_documentation",
         "documentation_html",
         "documentation_policy",
+        "documentation_hooks",
         "check_repository_inventory",
         "preflight",
         "preflight_checks",

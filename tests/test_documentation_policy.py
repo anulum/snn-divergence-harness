@@ -17,7 +17,7 @@ import pytest
 from documentation_policy import validate_documentation_configuration
 
 SOURCE = Path(__file__).resolve().parents[1]
-INPUTS = ("mkdocs.yml", "CITATION.cff", ".zenodo.json")
+INPUTS = ("mkdocs.yml", "CITATION.cff", ".zenodo.json", "tools/documentation_hooks.py")
 
 
 @pytest.fixture
@@ -26,6 +26,7 @@ def configuration(tmp_path: Path) -> Path:
     root = tmp_path / "configuration"
     root.mkdir()
     for name in INPUTS:
+        (root / name).parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(SOURCE / name, root / name)
     return root
 
@@ -85,7 +86,7 @@ def test_linked_root_is_not_a_different_configuration_source(
     root.symlink_to(configuration, target_is_directory=True)
     actual = validate_documentation_configuration(root)
     assert actual.exit_code == 2
-    assert len(actual.reasons) == 3
+    assert len(actual.reasons) == 4
     assert all(x.code == "documentation_link_refused" for x in actual.reasons)
 
 

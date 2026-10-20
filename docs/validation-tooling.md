@@ -122,6 +122,16 @@ The public API returns fixed located diagnostics with the same 4>3>2>0 precedenc
 
 ::: documentation_policy
 
+The native renderer includes the original contribution, conduct, governance,
+contributor, support, security and validation policies through its fixed file
+hook. These are the root source files, without generated Markdown copies. The
+selected hook is checked before the build; unavailable or linked policies and
+colliding routes stop the renderer. Final inspection requires the actual policy
+HTML and compares its headings and visible content with the original source,
+so stale or missing policy pages cannot inherit a passing source inspection.
+
+::: documentation_hooks
+
 
 ## Capability inventory
 
