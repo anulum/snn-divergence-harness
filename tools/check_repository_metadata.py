@@ -17,8 +17,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import NoReturn, TextIO
 
-from jsonschema import Draft202012Validator
-
 REPOSITORY_NAME = "SNN-DIVERGENCE-HARNESS"
 PROFILE_SHA256 = "f453a70eae008c41f8d26a1f495ec3636f64739bcedb9caac0bdf8774300905c"
 STANDARD_SHA256 = "8421674a61444474447fad2f4d2bfc54dc5a1ea12ae988785e57dbcab385938c"
@@ -143,6 +141,36 @@ def repository_schema() -> dict[str, object]:
     }
 
 
+def _selected_metadata() -> dict[str, object]:
+    """Construct the single source-selected descriptor without a runtime schema plugin."""
+    return {
+        "repository_name": REPOSITORY_NAME,
+        "owner_group": "SC-NEUROMORPHIC-COMPUTING-SYSTEMS",
+        "lifecycle": "local_scaffold",
+        "evidence_maturity": "architecture_only",
+        "capabilities": [],
+        "claims": [],
+        "qualified_owned_schema_ids": [],
+        "domain_runtime_dependencies": [],
+        "planned_owned_schema_ids": [
+            "snn_divergence_harness.oracle.v1",
+            "snn_divergence_harness.report.v1",
+        ],
+        "validation_profile": {
+            "id": "gotm.enterprise-repository-tier0.local-scaffold",
+            "revision": "2026-10-04",
+            "profile_sha256": PROFILE_SHA256,
+            "standard_sha256": STANDARD_SHA256,
+        },
+        "tooling_python": {
+            "actual_version": "3.13.16",
+            "design_baseline": "3.13",
+            "supported_range": ">=3.13.16,<3.14",
+            "development_lock_sha256": LOCK_SHA256,
+        },
+    }
+
+
 def _schema_bytes() -> bytes:
     return (json.dumps(repository_schema(), sort_keys=True, indent=2) + "\n").encode("utf-8")
 
@@ -188,9 +216,12 @@ def validate_repository_metadata(root: Path) -> Report:
     -----
     Inputs are read-only and bounded to one MiB each. Neither input fields nor
     an on-disk schema can select a different validator or policy. This check
-    does not inspect the installed environment or qualify domain behaviour.
+    checks the executing interpreter version, without qualifying the complete
+    installed package graph or domain behaviour.
     """
     reasons: list[Issue] = []
+    if sys.version_info != (3, 13, 16, "final", 0):
+        reasons.append(Issue("tooling_python", "interpreter_not_selected", 3))
     schema = _read(root, "schemas/repository-domain.schema.json", 4)
     if isinstance(schema, Issue):
         reasons.append(schema)
@@ -209,7 +240,7 @@ def validate_repository_metadata(root: Path) -> Report:
         except (UnicodeError, ValueError, RecursionError):
             reasons.append(Issue("repository-domain.json", "invalid_metadata_json", 2))
         else:
-            if not Draft202012Validator(repository_schema()).is_valid(value):
+            if value != _selected_metadata():
                 reasons.append(Issue("repository-domain.json", "metadata_not_selected", 2))
     lock = _read(root, "requirements-dev.txt", 2)
     if isinstance(lock, Issue):

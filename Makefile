@@ -6,7 +6,7 @@
 # Contact: www.anulum.li | protoscience@anulum.li
 # SNN-DIVERGENCE-HARNESS — repository identity and validation foundation
 
-.PHONY: docs licence metadata
+.PHONY: docs licence metadata source-provenance
 
 docs: .venv/bin/mkdocs
 	.venv/bin/mkdocs build --strict --clean --config-file mkdocs.yml
@@ -16,3 +16,6 @@ licence: .venv/bin/reuse
 
 metadata: .venv/bin/python
 	.venv/bin/python tools/check_repository_metadata.py --root . --json
+
+source-provenance: .venv/bin/python
+	.venv/bin/python tools/check_source_provenance.py --root . --json

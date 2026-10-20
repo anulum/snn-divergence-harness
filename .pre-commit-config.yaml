@@ -33,6 +33,12 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: source-provenance
+        name: Native source headers and exact JSON attribution
+        entry: .venv/bin/python tools/check_source_provenance.py --root . --json
+        language: system
+        pass_filenames: false
+        always_run: true
       - id: reuse
         name: Native source licence and attribution
         entry: .venv/bin/reuse lint

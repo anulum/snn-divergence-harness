@@ -10,7 +10,7 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 # SNN Divergence Harness
 
-SNN Divergence Harness is being built to locate and explain differences between spiking-model executions. The repository currently contains a source-selected repository-metadata checker, documentation and repository configuration under construction. It has no executable model driver, installed package, public run command or qualified numerical result.
+SNN Divergence Harness is being built to locate and explain differences between spiking-model executions. The repository currently contains source-selected repository-metadata and source-attribution checkers, documentation and repository configuration under construction. It has no executable model driver, installed package, public run command or qualified numerical result.
 
 The intended workflow binds the complete model, input, source versions, execution lane and comparison method before running either subject. It retains every attempt, compares the complete required output population and produces a result whose assumptions, limitations and source references remain visible. A reducer must preserve the admitted divergence and support a fresh replay.
 

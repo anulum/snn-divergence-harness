@@ -12,6 +12,7 @@ from __future__ import annotations
 import io
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -95,6 +96,9 @@ def test_actual_selected_repository_and_repeated_command_are_stable(candidate: P
     assert str(candidate) not in first.stdout
     assert {name: (candidate / name).read_bytes() for name in INPUTS} == before
     assert validate_repository_metadata(candidate).exit_code == 0
+    Draft202012Validator(repository_schema()).validate(
+        json.loads((candidate / INPUTS[0]).read_text())
+    )
 
 
 def test_schema_generation_is_valid_and_has_no_persistent_mutable_selection() -> None:
@@ -146,6 +150,7 @@ def test_each_selected_identity_claim_and_toolchain_boundary_refuses(
     else:
         metadata[head] = value
     target.write_text(json.dumps(metadata))
+    assert not Draft202012Validator(repository_schema()).is_valid(metadata)
     report = _api_report(candidate, 2)
     assert report["reasons"] == [{"path": INPUTS[0], "code": "metadata_not_selected"}]
 
@@ -290,3 +295,35 @@ def test_public_report_destination_and_output_failures(candidate: Path, tmp_path
         (candidate / INPUTS[1]).write_text("{}")
         assert main(["--root", str(candidate), "--json"], output=read_only) == 4
     assert destination.read_text() == "existing output"
+
+
+def test_actual_unsupported_interpreter_is_not_qualified_by_selected_metadata(
+    candidate: Path,
+) -> None:
+    """Refuse the unchanged selected descriptor under a genuinely different runtime."""
+    executable = shutil.which(os.environ.get("SNN_HARNESS_REJECTION_PYTHON", "python3.12"))
+    assert executable is not None, "A real rejection-test Python with coverage is required"
+    result = subprocess.run(
+        [
+            executable,
+            "-m",
+            "coverage",
+            "run",
+            "--branch",
+            "--parallel-mode",
+            "--source=tools",
+            str(SOURCE),
+            "--root",
+            str(candidate),
+            "--json",
+        ],
+        cwd=ROOT,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        capture_output=True,
+        text=True,
+        timeout=15,
+        check=False,
+    )
+    assert _report(result, 3)["reasons"] == [
+        {"path": "tooling_python", "code": "interpreter_not_selected"}
+    ]
