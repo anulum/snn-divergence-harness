@@ -39,6 +39,24 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: workflow-policy
+        name: Source-selected workflow policy
+        entry: .venv/bin/python tools/check_workflow_policy.py --root . --json
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: repository-inventory
+        name: Actual initial repository tree and index
+        entry: .venv/bin/python tools/check_repository_inventory.py --root . --mode verify --json
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: dependency-alignment
+        name: Selected tooling inputs and actual installed metadata
+        entry: .venv/bin/python tools/check_dependency_alignment.py --root . --json
+        language: system
+        pass_filenames: false
+        always_run: true
       - id: native-tools
         name: Selected native file identity
         entry: .venv/bin/python tools/bootstrap_native_tools.py --root . --json
@@ -47,13 +65,13 @@ repos:
         always_run: true
       - id: reuse
         name: Native source licence and attribution
-        entry: .venv/bin/reuse lint
+        entry: .venv/bin/reuse --no-multiprocessing lint
         language: system
         pass_filenames: false
         always_run: true
       - id: docs
         name: Strict documentation and native API rendering
-        entry: .venv/bin/mkdocs build --strict --clean --config-file mkdocs.yml
+        entry: make docs
         language: system
         pass_filenames: false
         always_run: true

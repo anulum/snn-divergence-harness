@@ -1,0 +1,12 @@
+{
+  "capabilities": [],
+  "claims": [],
+  "evidence_maturity": "architecture_only",
+  "lifecycle": "local_scaffold",
+  "qualified_owned_schema_ids": [],
+  "repository_name": "SNN-DIVERGENCE-HARNESS",
+  "source_metadata": {
+    "path": "repository-domain.json",
+    "sha256": "916453fd2bde8860c6832cc20e049a5aaa1b89a4eb07eec08884e39d50844089"
+  }
+}
