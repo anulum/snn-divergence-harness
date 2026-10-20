@@ -10,7 +10,7 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 # Repository validation tooling
 
-The repository-metadata command is implemented. It validates the source-selected local descriptor, exact schema bytes and actual development lock. The source-provenance command is also implemented. The other five project-owned guards remain unimplemented. This page and the native API below describe the available metadata and source-provenance surfaces.
+The repository-metadata command is implemented. It validates the source-selected local descriptor, exact schema bytes and actual development lock. The source-provenance command is also implemented. A selected native-file bootstrap is also implemented for development executables. The other five project-owned guards and complete workflow command wiring remain open.
 
 ## Available commands
 
@@ -20,6 +20,8 @@ Run from the repository root using its selected development environment:
     make source-provenance
     make docs
     make licence
+    make native-tools
+    make native-tools-check
 
 The metadata command is also directly available:
 
@@ -71,3 +73,13 @@ The local pre-commit configuration runs native Ruff and NumPy docstrings, format
 ## Native source-provenance API
 
 ::: check_source_provenance
+
+## Selected native tool files
+
+The native-tools target downloads exact official Linux x86-64 Actionlint and Gitleaks archives into the repository cache, checks their selected archive digests, then installs only their named executable and original licence files. The Python bootstrap itself makes no network requests and executes no binary. Its selected receipt and expected sizes/hashes are maintained source; a received receipt cannot select a new policy. Existing changed files and any linked path refuse instead of being overwritten. Default native-tools-check is read-only. Archive file identity is separate from reproducible-build, audit findings or hosted qualification.
+
+The local commit hook verifies selected native file identity before the native Gitleaks hook uses the repository-local executable. The two original upstream MIT licence texts are retained next to their installed files. Exact source references and artifact digests are in native-tool-provenance.json. Run make native-tools before the first hook/test invocation in a new checkout; the tool-specific tests use the actual downloaded archives and execute the installed version commands. Missing inputs fail instead of being skipped.
+
+The installer report uses gate native_tools and scope selected_native_files, with operation install or verify, status and all authored reasons. It follows the documented 4>3>2>0 exit precedence. Installation may create missing selected files; it preserves every existing file and reports output failures. Verification writes nothing. Neither operation asserts numerical, hardware, security-audit or hosted CI acceptance.
+
+::: bootstrap_native_tools

@@ -12,7 +12,9 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 The repository foundation is under construction. The current documentation source builds with strict MkDocs validation, and the current source cohort passes native REUSE licence checking. These checks do not qualify repository-wide validation, a model driver, numerical comparison, statistical power, an installed domain package or a benchmark.
 
-The available local commands are make metadata, make source-provenance, make docs and make licence. The metadata command checks its complete source-selected descriptor/schema/lock scope; it does not grant domain acceptance. The documentation and licence commands invoke the project environment’s actual documentation renderer and source-licence checker respectively. The documentation build covers docs/ and excludes docs/internal/. Root Markdown links are checked separately; this is not a claim that every future product page or API is rendered.
+The native bootstrap installs or verifies exact selected Actionlint/Gitleaks binary and licence bytes. This file-identity gate does not certify a scan outcome or a reproducible build.
+
+The available local commands are make metadata, make source-provenance, make docs, make licence, make native-tools and make native-tools-check. The metadata command checks its complete source-selected descriptor/schema/lock scope; it does not grant domain acceptance. The documentation and licence commands invoke the project environment’s actual documentation renderer and source-licence checker respectively. The documentation build covers docs/ and excludes docs/internal/. Root Markdown links are checked separately; this is not a claim that every future product page or API is rendered.
 
 Metadata and source provenance are implemented project-owned controls. Their dedicated tests exercise real APIs, source files and subprocess commands. Workflow policy, complete dependency alignment, documentation inspection, inventory and orchestration still require their complete owning implementations, tests and current evidence. There is no preflight success to inherit from another repository.
 

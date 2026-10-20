@@ -39,6 +39,12 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: native-tools
+        name: Selected native file identity
+        entry: .venv/bin/python tools/bootstrap_native_tools.py --root . --json
+        language: system
+        pass_filenames: false
+        always_run: true
       - id: reuse
         name: Native source licence and attribution
         entry: .venv/bin/reuse lint
@@ -59,7 +65,7 @@ repos:
         always_run: true
       - id: gitleaks
         name: Native staged-source secret inspection
-        entry: gitleaks git --pre-commit --staged --no-banner --redact --ignore-gitleaks-allow --gitleaks-ignore-path /dev/null --timeout 30
+        entry: .tool-cache/native/bin/gitleaks git --pre-commit --staged --no-banner --redact --ignore-gitleaks-allow --gitleaks-ignore-path /dev/null --timeout 30
         language: system
         pass_filenames: false
         always_run: true

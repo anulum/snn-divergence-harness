@@ -17,3 +17,4 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 - Added source-selected metadata validation through the public API, command and Make target, with dedicated behavioural tests and native API documentation.
 - Added actual source-attribution checks and dedicated tests, including exact JSON sidecars and original licence/branding bytes.
 - Refused a different executing Python runtime even when the supplied metadata declares the selected version.
+- Added source-selected native tool installation and read-only verification through Make, public API/CLI, local hooks and dedicated real-archive tests.
