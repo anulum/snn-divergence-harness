@@ -59,6 +59,6 @@ jobs:
     - name: Create the actual tooling environment
       run: |-
         uv venv --python 3.13.16 .venv
-        uv pip sync --require-hashes --python .venv/bin/python requirements-dev.txt
+        uv pip sync --require-hashes --build-constraints requirements-dev.txt --python .venv/bin/python requirements-dev.txt
     - name: Build the real documentation
       run: make docs

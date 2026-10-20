@@ -34,9 +34,11 @@ The selected tooling platform is Linux x86-64 with CPython 3.13.16. Begin with t
     export PRE_COMMIT_HOME="$PWD/.tool-cache/pre-commit"
     export PYTHONDONTWRITEBYTECODE=1
     uv venv --python 3.13.16 .venv
-    uv pip sync --require-hashes --python .venv/bin/python requirements-dev.txt
+    uv pip sync --require-hashes --build-constraints requirements-dev.txt --python .venv/bin/python requirements-dev.txt
     make native-tools
     make dependencies
+
+The development lock also constrains isolated source-build dependencies. In particular, REUSE's Poetry backend must match the locked poetry-core version and artifact hashes. Keep the build-constraints option in local and CI bootstrap commands; a runtime lock alone does not select the isolated build environment.
 
 Alignment must pass before the installed graph is treated as the selected environment. Its original installed metadata includes the selected source-built REUSE wheel; matching names and versions alone does not qualify a differently built installation. A metadata difference requires source review and a justified selection update, never automatic acceptance of changed bytes. The dedicated installation tests reproduce the selected graph offline from its qualified cache; that is not a claim that every fresh online build is identical.
 

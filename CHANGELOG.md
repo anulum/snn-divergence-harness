@@ -24,3 +24,4 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 - Added finite named preflight orchestration, explicit not_run outcomes and actual CI/audit/hook/environment-inventory commands.
 - Added dedicated real inventory and orchestration tests, source-selected working-tree secret projection, native API documentation and development-ecosystem update configuration.
 - Documented the implemented validation components and their actual trust boundaries separately from the planned model runtime.
+- Constrained isolated source-build dependencies with the selected hash-locked development graph in local and prepared CI bootstrap commands.

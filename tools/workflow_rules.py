@@ -43,7 +43,7 @@ BASE_OPERATIONS: list[tuple[str, str]] = [
     ("uses", "astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884"),
     (
         "run",
-        "uv venv --python 3.13.16 .venv\nuv pip sync --require-hashes --python .venv/bin/python requirements-dev.txt",
+        "uv venv --python 3.13.16 .venv\nuv pip sync --require-hashes --build-constraints requirements-dev.txt --python .venv/bin/python requirements-dev.txt",
     ),
 ]
 

@@ -66,6 +66,8 @@ def isolated_environment(tmp_path_factory: pytest.TempPathFactory) -> Iterator[P
             "sync",
             "--offline",
             "--require-hashes",
+            "--build-constraints",
+            str(SOURCE / "requirements-dev.txt"),
             "--python",
             str(root / "bin/python"),
             str(SOURCE / "requirements-dev.txt"),

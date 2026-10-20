@@ -229,3 +229,29 @@ def test_actual_aggregate_refuses_missing_failed_or_hidden_required_result() -> 
     )
     assert report.exit_code == 2
     assert report.as_dict()["status"] == "refused"
+
+
+@pytest.mark.parametrize(
+    "replacement",
+    [
+        "",
+        "--build-constraints requirements-rejection.txt ",
+        "--build-constraints /tmp/build-constraints.txt ",
+    ],
+)
+def test_source_build_constraints_cannot_be_omitted_or_replaced(replacement: str) -> None:
+    """Refuse a real bootstrap job that stops enforcing the selected build graph.
+
+    Parameters
+    ----------
+    replacement : str
+        Missing or alternate constraint selection in an otherwise valid job.
+    """
+    job = _job("ci.yml")
+    steps = job["steps"]
+    assert isinstance(steps, list)
+    command = steps[3]["run"]
+    steps[3]["run"] = command.replace("--build-constraints requirements-dev.txt ", replacement)
+    assert "operation_sequence_not_selected" in {
+        x.code for x in check_job_policy(".github/workflows/ci.yml", job, aggregate=False)
+    }
