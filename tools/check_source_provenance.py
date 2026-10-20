@@ -262,6 +262,12 @@ def validate_source_provenance(root: Path) -> SourceReport:
     a 512-entry tree limit and a four-MiB limit per regular source. Original
     licence, branding and attribution-recipe bytes are selected by source.
     """
+    try:
+        str(root).encode("utf-8")
+        if "\0" in str(root):
+            raise ValueError("invalid root")
+    except (UnicodeError, ValueError):
+        return SourceReport((SourceIssue("invocation", "invalid_root", 4),))
     if root.is_symlink():
         return SourceReport((SourceIssue("source_tree", "source_link_refused"),))
     names, reasons = _source_paths(root)

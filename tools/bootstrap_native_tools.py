@@ -88,7 +88,7 @@ class NativeToolReport:
             "gate": "native_tools",
             "scope": "selected_native_files",
             "operation": "install" if self.installed else "verify",
-            "status": "pass" if self.exit_code == 0 else "refused",
+            "status": {0: "pass", 2: "refused", 3: "unavailable", 4: "invalid"}[self.exit_code],
             "reasons": [{"path": issue.path, "code": issue.code} for issue in self.reasons],
         }
 
@@ -134,6 +134,12 @@ def bootstrap_native_tools(root: Path, *, install: bool = False) -> NativeToolRe
         File-identity results only. No network request, archive-wide extraction,
         subprocess, host-tool fallback or native audit is performed.
     """
+    try:
+        str(root).encode("utf-8")
+        if "\0" in str(root):
+            raise ValueError("invalid root")
+    except (UnicodeError, ValueError):
+        return NativeToolReport((NativeToolIssue("invocation", "invalid_root", 4),), install)
     reasons: list[NativeToolIssue] = []
     receipt = _read(root, "native-tool-provenance.json", 2866)
     if isinstance(receipt, NativeToolIssue):
@@ -219,10 +225,11 @@ def main(argv: list[str] | None = None, *, stdout: TextIO | None = None) -> int:
     except SystemExit as exc:
         return 0 if exc.code == 0 else 4
     report = bootstrap_native_tools(args.root.absolute(), install=args.install)
+    document = report.as_dict()
     text = (
-        json.dumps(report.as_dict(), indent=2, ensure_ascii=True)
+        json.dumps(document, indent=2, ensure_ascii=True)
         if args.json
-        else ("Native file identity: " + ("pass" if report.exit_code == 0 else "refused"))
+        else "Native file identity: " + str(document["status"])
     )
     try:
         output = sys.stdout if stdout is None else stdout

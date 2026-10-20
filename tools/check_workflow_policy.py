@@ -56,6 +56,12 @@ def validate_workflow_policy(root: Path) -> WorkflowReport:
         All structural/source diagnoses. Success does not establish native
         actionlint, complete Make/tool wiring, service settings or hosted runs.
     """
+    try:
+        str(root).encode("utf-8")
+        if "\0" in str(root):
+            raise ValueError("invalid root")
+    except (UnicodeError, ValueError):
+        return WorkflowReport((WorkflowIssue("invocation", "invalid_root", 4),))
     reasons: list[WorkflowIssue] = []
     provenance = _read(root, "workflow-provenance.json")
     if isinstance(provenance, WorkflowIssue):

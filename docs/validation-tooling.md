@@ -45,6 +45,12 @@ The JSON report contains gate, scope, status and reasons. Located reasons contai
 
 Multiple input failures remain visible. Configuration takes precedence over availability, which takes precedence over refusal. An unavailable report destination cannot return success; output failure retains a prior configuration failure. Help is a separate informational operation and does not validate metadata.
 
+Metadata, source-provenance, workflow-policy and native-tool API calls reject
+a root containing NUL or values that cannot be encoded as UTF-8 before any
+filesystem access. They return invocation/invalid_root with exit 4 and status
+invalid. The native installer applies this validation in both verify and
+install modes, before any output creation.
+
 The make docs and make licence targets invoke actual strict documentation rendering and native REUSE checking. Their scopes do not substitute for the remaining project-owned controls or complete foundation acceptance.
 
 ## Source provenance
@@ -82,6 +88,11 @@ The native-tools target downloads exact official Linux x86-64 Actionlint and Git
 The local commit hook verifies selected native file identity before the native Gitleaks hook uses the repository-local executable. The two original upstream MIT licence texts are retained next to their installed files. Exact source references and artifact digests are in native-tool-provenance.json. Run make native-tools before the first hook/test invocation in a new checkout; the tool-specific tests use the actual downloaded archives and execute the installed version commands. Missing inputs fail instead of being skipped.
 
 The installer report uses gate native_tools and scope selected_native_files, with operation install or verify, status and all authored reasons. It follows the documented 4>3>2>0 exit precedence. Installation may create missing selected files; it preserves every existing file and reports output failures. Verification writes nothing. Neither operation asserts numerical, hardware, security-audit or hosted CI acceptance.
+
+Native-tool status matches its exit: pass for 0, refused for 2, unavailable
+for 3 and invalid for 4. Missing source or archive inputs therefore remain
+unavailable when the real preflight child report is consumed; they are not
+misreported as inconsistent or refused output.
 
 ::: bootstrap_native_tools
 

@@ -247,7 +247,7 @@ def test_public_cli_results_and_real_report_output_failures(
     assert _invoke(installed).stdout == "Native file identity: pass\n"
     refused = _invoke(installed / "missing")
     assert refused.returncode == 3
-    assert refused.stdout == "Native file identity: refused\n"
+    assert refused.stdout == "Native file identity: unavailable\n"
     assert _invoke(installed, "--help").returncode == 0
     assert _invoke(installed, "--unknown").returncode == 4
     output = io.StringIO()
@@ -275,3 +275,24 @@ def test_actual_make_entry_points_use_the_selected_local_tools() -> None:
     )
     assert result.returncode == 0, result.stdout + result.stderr
     assert '"gate": "native_tools"' in result.stdout
+
+
+@pytest.mark.parametrize("value", ["\0", "\ud800"])
+@pytest.mark.parametrize("install", [False, True])
+def test_invalid_root_stops_verify_and_install_before_filesystem_access(
+    value: str, install: bool
+) -> None:
+    """Return consistent invalid reports before either native operation can touch files."""
+    report = bootstrap_native_tools(Path(value), install=install)
+    assert report.exit_code == 4
+    assert report.as_dict()["status"] == "invalid"
+    assert report.as_dict()["operation"] == ("install" if install else "verify")
+    assert report.as_dict()["reasons"] == [{"path": "invocation", "code": "invalid_root"}]
+    output = io.StringIO()
+    options = ["--install"] if install else []
+    assert main(["--root", value, "--json", *options], stdout=output) == 4
+    assert json.loads(output.getvalue()) == report.as_dict()
+
+    plain = io.StringIO()
+    assert main(["--root", value, *options], stdout=plain) == 4
+    assert plain.getvalue() == "Native file identity: invalid\n"

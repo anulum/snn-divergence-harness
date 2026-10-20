@@ -327,3 +327,15 @@ def test_actual_unsupported_interpreter_is_not_qualified_by_selected_metadata(
     assert _report(result, 3)["reasons"] == [
         {"path": "tooling_python", "code": "interpreter_not_selected"}
     ]
+
+
+@pytest.mark.parametrize("value", ["\0", "\ud800"])
+def test_invalid_root_public_api_and_cli_are_controlled(value: str) -> None:
+    """Reject malformed roots through real API and CLI parsing before file reads."""
+    report = validate_repository_metadata(Path(value))
+    assert report.exit_code == 4
+    assert report.as_dict()["status"] == "invalid"
+    assert report.as_dict()["reasons"] == [{"path": "invocation", "code": "invalid_root"}]
+    output = io.StringIO()
+    assert main(["--root", value, "--json"], output=output) == 4
+    assert json.loads(output.getvalue()) == report.as_dict()

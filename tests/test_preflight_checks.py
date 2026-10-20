@@ -216,3 +216,17 @@ def test_real_software_inventories_match_source_bytes_and_installed_versions(
     target.unlink()
     target.mkdir()
     assert run_check(tmp_path, "source-spdx").code == "required_check_unavailable"
+
+
+def test_actual_native_bootstrap_unavailability_survives_the_consumer(tmp_path: Path) -> None:
+    """Retain exit3/unavailable from the real child instead of rejecting its report."""
+    (tmp_path / ".venv/bin").mkdir(parents=True)
+    (tmp_path / ".venv/bin/python").symlink_to(ROOT / ".venv/bin/python")
+    (tmp_path / "tools").mkdir()
+    shutil.copyfile(
+        ROOT / "tools/bootstrap_native_tools.py", tmp_path / "tools/bootstrap_native_tools.py"
+    )
+    result = run_check(tmp_path, "native-tools")
+    assert result.exit_code == 3
+    assert result.status == "unavailable"
+    assert result.code == "check_failed"

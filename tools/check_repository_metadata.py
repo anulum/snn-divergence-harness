@@ -219,6 +219,12 @@ def validate_repository_metadata(root: Path) -> Report:
     checks the executing interpreter version, without qualifying the complete
     installed package graph or domain behaviour.
     """
+    try:
+        str(root).encode("utf-8")
+        if "\0" in str(root):
+            raise ValueError("invalid root")
+    except (UnicodeError, ValueError):
+        return Report((Issue("invocation", "invalid_root", 4),))
     reasons: list[Issue] = []
     if sys.version_info != (3, 13, 16, "final", 0):
         reasons.append(Issue("tooling_python", "interpreter_not_selected", 3))
