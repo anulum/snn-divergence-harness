@@ -12,6 +12,9 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 ## [Unreleased]
 
+- Align the development lock and six workflow bootstraps with uv 0.13.4, certifi 2026.10.19 and virtualenv 21.14.9. Keep the existing local Python build distinct from the newer build selected during a fresh bootstrap.
+- Use the shared uv package cache in local development instructions.
+
 - Began the local repository foundation and documented the planned comparison, driver, evidence and replay boundaries.
 - Added project governance, attribution and contribution material.
 - Added source-selected metadata validation through the public API, command and Make target, with dedicated behavioural tests and native API documentation.

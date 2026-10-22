@@ -299,8 +299,8 @@
     {
       "active_dependencies": [],
       "active_extras": [],
-      "installed_metadata_path": "certifi-2026.7.22.dist-info/METADATA",
-      "installed_metadata_sha256": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090",
+      "installed_metadata_path": "certifi-2026.10.19.dist-info/METADATA",
+      "installed_metadata_sha256": "a5c0be3a42daeef0edfaf58e6ea5b7550f3e4e8eb35420f72e902df9bcf00f5c",
       "licence_classifiers": [
         "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
       ],
@@ -312,14 +312,14 @@
       "requires_python": ">=3.7",
       "role": "transitive",
       "source_artifact": {
-        "bytes": 136983,
-        "filename": "certifi-2026.7.22-py3-none-any.whl",
+        "bytes": 136464,
+        "filename": "certifi-2026.10.19-py3-none-any.whl",
         "kind": "bdist_wheel",
-        "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775",
-        "url": "https://files.pythonhosted.org/packages/0b/a7/71ac2cff56fec219ed242bb11b8efb69fcc4bec75db06fb7bfe35de520e6/certifi-2026.7.22-py3-none-any.whl"
+        "sha256": "42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b",
+        "url": "https://files.pythonhosted.org/packages/c4/51/29046e48f693c54e5b7412216d447a1d8362c9653148d98c02cdf65fa733/certifi-2026.10.19-py3-none-any.whl"
       },
-      "source_metadata_observation_sha256": "c6fe912677e373608eab51e324946005998faeb0fa999e6ddada24676e3556d3",
-      "version": "2026.7.22"
+      "source_metadata_observation_sha256": "5b6ba21c20c09f5e4ca52bf8251de25fafbdb56909c60e3ba44d4f2b6ef5d319",
+      "version": "2026.10.19"
     },
     {
       "active_dependencies": [],
@@ -2383,7 +2383,7 @@
         {
           "requirement": "virtualenv>=20.10.0",
           "selected_name": "virtualenv",
-          "selected_version": "21.14.4"
+          "selected_version": "21.14.9"
         }
       ],
       "active_extras": [],
@@ -2917,7 +2917,7 @@
         {
           "requirement": "certifi>=2023.5.7",
           "selected_name": "certifi",
-          "selected_version": "2026.7.22"
+          "selected_version": "2026.10.19"
         }
       ],
       "active_extras": [],
@@ -3552,8 +3552,8 @@
     {
       "active_dependencies": [],
       "active_extras": [],
-      "installed_metadata_path": "uv-0.12.22.dist-info/METADATA",
-      "installed_metadata_sha256": "bd87452b7786f5588584b827dca166e57e269c655f5ea0228b47e83fb703fd27",
+      "installed_metadata_path": "uv-0.13.4.dist-info/METADATA",
+      "installed_metadata_sha256": "00b8c59f203e332092ec679c6f58bb07ccb90732d6b464304032afb1f24079e5",
       "licence_classifiers": [],
       "licence_expression": "MIT OR Apache-2.0",
       "licence_label": null,
@@ -3563,19 +3563,19 @@
       "requires_python": ">=3.8",
       "role": "direct",
       "source_artifact": {
-        "bytes": 20587257,
-        "filename": "uv-0.12.22-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+        "bytes": 17181168,
+        "filename": "uv-0.13.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
         "kind": "bdist_wheel",
-        "sha256": "680769ef701922dd93426b73476073411941f51ac46991a6e5c5a6efbf68a713",
-        "url": "https://files.pythonhosted.org/packages/7a/b0/4cceeef80da0e8627bf3afb628930d5ea8e857f9c2aacbcda8598a5b82aa/uv-0.12.22-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        "sha256": "05e4332791b4d55b6dde8695b7fa6079b26991519f44760887c5dfbd5ca4fe53",
+        "url": "https://files.pythonhosted.org/packages/4b/a1/de02c0913726728eca56ee258875cbba9c7b0572c63f494fd9f55c7852e3/uv-0.13.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
       },
-      "source_metadata_observation_sha256": "afab0e70d0ba504e60ae335f451a2889d47d8096343b7ad2450f259a18dd7fd8",
-      "version": "0.12.22"
+      "source_metadata_observation_sha256": "cbd2196e0dde20ea72e8adb19bc2429ff7aec7285d996b23b3f6dcf359b6ba71",
+      "version": "0.13.4"
     },
     {
       "active_dependencies": [
         {
-          "requirement": "distlib<1,>=0.3.7",
+          "requirement": "distlib<1,>=0.4.3",
           "selected_name": "distlib",
           "selected_version": "0.4.3"
         },
@@ -3585,24 +3585,24 @@
           "selected_version": "4.0.9"
         },
         {
-          "requirement": "packaging>=23.1",
+          "requirement": "packaging>=26.3",
           "selected_name": "packaging",
           "selected_version": "26.3"
         },
         {
-          "requirement": "platformdirs<5,>=3.9.1",
+          "requirement": "platformdirs<5,>=4.4",
           "selected_name": "platformdirs",
           "selected_version": "4.12.2"
         },
         {
-          "requirement": "python-discovery>=1.6",
+          "requirement": "python-discovery>=1.6.1",
           "selected_name": "python-discovery",
           "selected_version": "1.6.1"
         }
       ],
       "active_extras": [],
-      "installed_metadata_path": "virtualenv-21.14.4.dist-info/METADATA",
-      "installed_metadata_sha256": "e61ddea70c7be384fc3cbfb0dfcc4d691a58d3012b1cd137842a8f22a8279491",
+      "installed_metadata_path": "virtualenv-21.14.9.dist-info/METADATA",
+      "installed_metadata_sha256": "6963973437357ade01e57a4a459fac86e9acb7d3a59de476a5bbc311e3a81903",
       "licence_classifiers": [
         "License :: OSI Approved :: MIT License"
       ],
@@ -3611,25 +3611,25 @@
       "name": "virtualenv",
       "purpose": "Required by the selected active development graph.",
       "requires_dist": [
-        "distlib<1,>=0.3.7",
+        "distlib<1,>=0.4.3",
         "filelock<5,>=3.24.2; python_version >= '3.10'",
-        "filelock<=3.19.1,>=3.16.1; python_version < '3.10'",
-        "packaging>=23.1",
-        "platformdirs<5,>=3.9.1",
-        "python-discovery>=1.6",
-        "typing-extensions>=4.13.2; python_version < '3.11'"
+        "filelock<=3.19.1,>=3.19.1; python_version < '3.10'",
+        "packaging>=26.3",
+        "platformdirs<5,>=4.4",
+        "python-discovery>=1.6.1",
+        "typing-extensions>=4.16; python_version < '3.11'"
       ],
       "requires_python": ">=3.9",
       "role": "transitive",
       "source_artifact": {
-        "bytes": 5487214,
-        "filename": "virtualenv-21.14.4-py3-none-any.whl",
+        "bytes": 5494452,
+        "filename": "virtualenv-21.14.9-py3-none-any.whl",
         "kind": "bdist_wheel",
-        "sha256": "2d1a394ef089220b4606408b184433e49417a6e5590a09c7b8a67fb1e013af56",
-        "url": "https://files.pythonhosted.org/packages/89/69/49381b5dd39d930c4b42819a23b8f9f242dd256bf46fb9dcd7ce713fe5d5/virtualenv-21.14.4-py3-none-any.whl"
+        "sha256": "ac51744da66ae56ff814b087d65096c94de698ec520adc624b108b679655809b",
+        "url": "https://files.pythonhosted.org/packages/64/e5/9a3918219745e8bdd64fe0fd9a2d7ce4fffde9268fbc791634b7d4779de9/virtualenv-21.14.9-py3-none-any.whl"
       },
-      "source_metadata_observation_sha256": "7e1f8bbbe98d9c1d83986d7c740d21207f0c4b6e4cb7a5c41320b12c7b0e03bc",
-      "version": "21.14.4"
+      "source_metadata_observation_sha256": "924454e173bfd4a5bb6798de175bed883b3b663be5e33ce43088dbe85ba8ac50",
+      "version": "21.14.9"
     },
     {
       "active_dependencies": [],
@@ -3734,22 +3734,22 @@
     ],
     "file_sha256": {
       ".github/dependabot.yml": "f6faa77e071af5b1e803946d930ae64bde7dfb09ce42d2f38b0f5a08a4c37800",
-      ".github/workflows/ci.yml": "0f8bf4c7646d7eb51ebeb81675669275f8aaceca4be6b48087585ed1ec13fdd5",
-      ".github/workflows/codeql.yml": "d7fe224334c8e8ea957b3e26eafb02a74e718e80b8b157292c1210061dae4a90",
-      ".github/workflows/docs.yml": "ed9d50ddc373c5d03bfc7987b3f59a93133e475cdfb5cdc32a86e6493c51e13a",
-      ".github/workflows/pre-commit.yml": "5379b7f3307ef9edb1dc051ecd71e9eb68d8d07dcbc05976a331c22954dcb717",
-      ".github/workflows/sbom.yml": "696b5fddb16dd34eb50bc4fa6c074d823eb6617f640e6a5b12173caf3367a510",
+      ".github/workflows/ci.yml": "bbc6e11fa9b6bd14e298e9a671e5e346ce39f9fcc4fe891a4439d9cd4640c00e",
+      ".github/workflows/codeql.yml": "0adf8d3268d7571a3afc7873ac92fb5e17d301f3d4f1330bac7e3ce3a882f97a",
+      ".github/workflows/docs.yml": "e50df51c3d80919d261da68254bb034b3ca517a5854688456425515944fc5fd9",
+      ".github/workflows/pre-commit.yml": "7dab37ad1d50137e141f7aa4163eb8ba6b94edcc4837f7f0a4c180b321206e7c",
+      ".github/workflows/sbom.yml": "8f4b8decfd0b3fa22127de77034bfaf78cc79347e2713450fbe5501d218520fa",
       ".github/workflows/scorecard.yml": "3c75a332351caf7e20d1d77c4304191a60c1d6d2f69c342f9bd4c471bfa695cc",
-      ".github/workflows/security-audit.yml": "1660a0e2f454f533ed23eca2e0b22c7ea12c714c1fdaf0e78737038d874db059",
+      ".github/workflows/security-audit.yml": "d6bf06e0d3e005f7ce11324aaac23155236c154e96ac04425a650d6e29495926",
       ".pre-commit-config.yaml": "d29a4d15387baa7681c60d0ef7a53d59272e1d9a020a76d8a144f2965187f706",
       "Makefile": "2fee781afc6fd5fd7a4a476688883c95841fbf1fdf4bce96f7a89a8373c5109b",
       "native-tool-provenance.json": "01d5c24ecd6ff66e89a69e24b83c68ad05c96f8d1cca8d69877d0ce4d98f4848",
       "pyproject.toml": "c6c3d58ff353d63630124c88d2da6bbc4cb619db5c3a2e50ae89ff579d2d0e8a",
-      "requirements-dev.in": "d5fa1febe3c5ab72815d217b1503bbeebd484a22b5f861e4659953a83cf80eee",
-      "requirements-dev.txt": "2132334cf5e49d51c2e8c217fec700fb3bc9ab7e785c38103a7a2c9968988c46",
+      "requirements-dev.in": "32c59bf9dcb26ba9cec649ec089a0749f3d21c5d9be84bc19d0e23d10dbc9462",
+      "requirements-dev.txt": "cc93b1d112dd9d479bed363c21483bedad14509af1ae54f8c4b2f54cfefe4228",
       "requirements-rejection.in": "6216dae559cfba2920480df3f41a19518064a5b63858a58b929b9290f46c2b1f",
       "requirements-rejection.txt": "32ca713b3a14b4e8b1b9c9157241b6edc5a1dacdb387c91047b06275eecbfd51",
-      "workflow-provenance.json": "c914c969393fa339f791a01a39453d4edf92582aa087e9246ae137401cdc4d22"
+      "workflow-provenance.json": "ebdf0611a3b3dc2b7ed347fc7fc131ee1c7c47e0f4e311c86c7982ce9808a8a2"
     },
     "installed_metadata_sha256": {
       "arrow-1.4.0.dist-info/METADATA": "36407a40cd6a7f3147f8c8ab802d516fb4c152d7e2aabab52718ff3407a1706d",
@@ -3759,7 +3759,7 @@
       "bandit-1.9.4.dist-info/METADATA": "a5cffbefaf54c51418e19cf5765ded49af20b27a25b8eb440f21d9db50c9ce9a",
       "boolean_py-5.0.dist-info/METADATA": "9e43aeae17a73073abee61deb5fb267dfdf0eeb67d6e3123270b52aac5ed87fa",
       "cachecontrol-0.14.4.dist-info/METADATA": "a3b797a601ffe3505ce4b0c635363ccf26a9959f2490e902f841a4b5996b5cc4",
-      "certifi-2026.7.22.dist-info/METADATA": "ef5af1638fbb23676ac3c5777dfcfc2cd9c348fe4172ed5ba3d277655b248090",
+      "certifi-2026.10.19.dist-info/METADATA": "a5c0be3a42daeef0edfaf58e6ea5b7550f3e4e8eb35420f72e902df9bcf00f5c",
       "cfgv-3.5.0.dist-info/METADATA": "ae126b80e15f39d0feff7368cefea2ea6478fdcedcde52918d0f58b668e19137",
       "chardet-7.6.0.dist-info/METADATA": "2c8577bdf827dd08a9ab4f5279bce3b0a06dad9445bf9b567a85ba9ae429e9a9",
       "charset_normalizer-3.5.2.dist-info/METADATA": "89ce6362bb7be88558f4be99a98f5d1b4da93d19cd0323e5ee0bac05cf883dfb",
@@ -3850,8 +3850,8 @@
       "tzdata-2026.4.dist-info/METADATA": "b022fde14c390c66d53c9cbccf614ebfa7224c453b1b5bec11f2923beaa7c96a",
       "uri_template-1.3.0.dist-info/METADATA": "3a8c53a915e5755c13b09faa29a4211fcff0c6ee188a169fc02cc092d89f46bc",
       "urllib3-2.8.0.dist-info/METADATA": "10898c620e8007c030e07fa5622b68358a43010025dfbd78a1cb797699de2bb4",
-      "uv-0.12.22.dist-info/METADATA": "bd87452b7786f5588584b827dca166e57e269c655f5ea0228b47e83fb703fd27",
-      "virtualenv-21.14.4.dist-info/METADATA": "e61ddea70c7be384fc3cbfb0dfcc4d691a58d3012b1cd137842a8f22a8279491",
+      "uv-0.13.4.dist-info/METADATA": "00b8c59f203e332092ec679c6f58bb07ccb90732d6b464304032afb1f24079e5",
+      "virtualenv-21.14.9.dist-info/METADATA": "6963973437357ade01e57a4a459fac86e9acb7d3a59de476a5bbc311e3a81903",
       "watchdog-6.0.0.dist-info/METADATA": "ecfde023047e7761dce06d4488abcede89e398399961a052f2fccb39b001e279",
       "webcolors-25.10.0.dist-info/METADATA": "53b0da874b2e90dd8f1ccaa9c75c41e8db9107eb2568fc7a4e605b71c955d099",
       "zizmor-1.30.1.dist-info/METADATA": "0bbcc2eb51ce690a1f2df9a697409713d72276d43870ea2563a595c31de8ca0e"

@@ -25,11 +25,11 @@ Run make native-tools before hooks and native-tool tests in a fresh checkout. Do
 
 ## Development environment
 
-The selected tooling platform is Linux x86-64 with CPython 3.13.16. Begin with the verified uv 0.12.22 tool identified in workflow-provenance.json; these instructions do not install an arbitrary latest tool. Run from this checkout on the intended working filesystem:
+The selected tooling platform is Linux x86-64 with CPython 3.13.16. Begin with the verified uv 0.13.4 tool identified in workflow-provenance.json; these instructions do not install an arbitrary latest tool. Run from this checkout on the intended working filesystem:
 
-    mkdir -p .tool-cache/tmp .tool-cache/uv-cache .tool-cache/pre-commit
+    mkdir -p .tool-cache/tmp .tool-cache/pre-commit
     export TMPDIR="$PWD/.tool-cache/tmp"
-    export UV_CACHE_DIR="$PWD/.tool-cache/uv-cache"
+    export UV_CACHE_DIR="$(uv cache dir)"
     export UV_LINK_MODE=hardlink
     export PRE_COMMIT_HOME="$PWD/.tool-cache/pre-commit"
     export PYTHONDONTWRITEBYTECODE=1
