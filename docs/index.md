@@ -12,6 +12,8 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 The repository is preparing a comparison, reduction and replay tool for spiking-model executions. Its current contents describe the intended boundaries and repository foundation. No executable driver, installed runtime or qualified comparison result is available.
 
+SNN Divergence Harness is part of the **SC Neuromorphic Computing Systems** group (SC-NEUROMORPHIC-COMPUTING-SYSTEMS). The [group and project map](https://github.com/anulum/sc-neurocore/blob/main/docs/ecosystem.md) shows the whole programme and where this repository sits in it.
+
 - [Architecture](ARCHITECTURE.md)
 - [Validation tooling status](validation-tooling.md)
 - [Data and authority boundaries](THREAT_MODEL.md)

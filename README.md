@@ -12,6 +12,8 @@ SNN-DIVERGENCE-HARNESS — repository foundation
 
 SNN Divergence Harness is being built to locate and explain differences between spiking-model executions. The repository currently contains seven repository controls covering metadata, attribution, workflows, dependency alignment, documentation, capability inventory and preflight orchestration, plus a selected native-tool bootstrap. Their full foundation qualification remains in progress. It has no executable model driver, installed package, public run command or qualified numerical result.
 
+SNN Divergence Harness is part of the **SC Neuromorphic Computing Systems** group (SC-NEUROMORPHIC-COMPUTING-SYSTEMS). The [group and project map](https://github.com/anulum/sc-neurocore/blob/main/docs/ecosystem.md) shows the whole programme and where this repository sits in it.
+
 The intended workflow binds the complete model, input, source versions, execution lane and comparison method before running either subject. It retains every attempt, compares the complete required output population and produces a result whose assumptions, limitations and source references remain visible. A reducer must preserve the admitted divergence and support a fresh replay.
 
 Planned lanes cover deterministic discrete, deterministic floating and statistical comparisons. Statistical equivalence requires a preselected family allocation and independently established joint power; a favourable single run or failed rejection cannot establish equivalence. The planned seven external framework drivers each need their own compatible, pinned environment and real execution evidence.

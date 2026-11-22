@@ -3,12 +3,13 @@
   "claims": [],
   "domain_runtime_dependencies": [],
   "evidence_maturity": "architecture_only",
-  "lifecycle": "local_scaffold",
+  "lifecycle": "public_repository",
   "owner_group": "SC-NEUROMORPHIC-COMPUTING-SYSTEMS",
   "planned_owned_schema_ids": [
     "snn_divergence_harness.oracle.v1",
     "snn_divergence_harness.report.v1"
   ],
+  "public_remote": "https://github.com/anulum/snn-divergence-harness",
   "qualified_owned_schema_ids": [],
   "repository_name": "SNN-DIVERGENCE-HARNESS",
   "tooling_python": {
