@@ -14,7 +14,7 @@
   "tooling_python": {
     "actual_version": "3.13.16",
     "design_baseline": "3.13",
-    "development_lock_sha256": "cc93b1d112dd9d479bed363c21483bedad14509af1ae54f8c4b2f54cfefe4228",
+    "development_lock_sha256": "75037d08bc6461aa52e713c7fd3122ff9944160eb50ccbb660d6c180cb41ce44",
     "supported_range": ">=3.13.16,<3.14"
   },
   "validation_profile": {
